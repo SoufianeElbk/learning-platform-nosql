@@ -3,11 +3,20 @@
 // Question: Quelles sont les bonnes pratiques pour les clés Redis ?
 // Réponse : Les bonnes pratiques pour les clés Redis incluent l'utilisation de noms de clés descriptifs et hiérarchiques (par exemple, `user:123:profile`), l'ajout de préfixes pour éviter les collisions de noms, et la définition d'un TTL pour les clés afin de gérer la mémoire et d'éviter l'accumulation de données obsolètes.
 
+const db = require('../config/db');
+
 // Fonctions utilitaires pour Redis
 async function cacheData(key, data, ttl) {
-    // TODO: Implémenter une fonction générique de cache
+  // TODO: Implémenter une fonction générique de cache
+  try {
+    await db.getRedisClient().set(key, JSON.stringify(data), 'EX', ttl);
+  } catch (error) {
+    throw new Error('Failed to cache data');
   }
+}
+
   
-  module.exports = {
-    // TODO: Exporter les fonctions utilitaires
-  };
+module.exports = {
+  // TODO: Exporter les fonctions utilitaires
+  cacheData
+};
