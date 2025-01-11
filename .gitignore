@@ -1,3 +1,6 @@
 # Compléter ici !!!!???
 
 node_modules
+
+# Fichier de variables d'environnement dotenv
+.env
