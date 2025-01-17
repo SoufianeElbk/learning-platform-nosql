@@ -9,6 +9,7 @@ const config = require('./config/env');
 const db = require('./config/db');
 
 const courseRoutes = require('./routes/courseRoutes');
+const studentRoutes = require('./routes/studentRoute');
 
 const app = express();
 
@@ -23,6 +24,8 @@ async function startServer() {
 
     // TODO: Monter les routes
     app.use('/courses', courseRoutes);
+    
+    app.use('/students', studentRoutes);
 
     // TODO: Démarrer le serveur
     app.listen(config.port, () => {
