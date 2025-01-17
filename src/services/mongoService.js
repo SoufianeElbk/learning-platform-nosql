@@ -8,7 +8,8 @@ const db = require('../config/db');
 async function findOneById(collection, id) {
   // TODO: Implémenter une fonction générique de recherche par ID
   try {
-    const result = await db.getDb().collection(collection).findOne({ _id: ObjectId(id) });
+    const objectId = ObjectId.createFromHexString(id);
+    const result = await db.getDb().collection(collection).findOne({ _id: objectId });
     return result;
   } catch (error) {
     throw new Error('Failed to find document by ID');
